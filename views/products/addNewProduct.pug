@@ -1,0 +1,49 @@
+extends ../layout.pug
+block content 
+  section(class="item w-full mx-0 mt-20 px-32 py-8 pb-20 flex flex-wrap items-end justify-between bg-gray-200" id="trending")
+   form(action="/products" enctype="multipart/form-data" method="POST" class='w-full')
+    div(class='flex justify-between')
+      div(class='images-side w-[34%] h-fit')
+        label(class='block mb-3') Thumbnail:
+        img(src="/images/products/default_Thumbnail.jpg", alt="thumbnail" id='productThumbnail')
+        input(type="file" name='thumbnail' id='productThumbnailFile')
+        label(class='block my-3') Gallery:
+        input(type="file" name='gallery' id='productGalleryFiles' multiple)
+        div(id="productGallery" class='flex justify-between items-start flex-wrap w-full h-fit mt-3')
+      div(class='info-side w-[64%] h-auto')
+        div(class='inputField')
+          label(class='block') Product Name:
+          input(type="text" name='name' class='w-full p-3 mt-3 mb-5 shadow-lg')
+        div(class='inputField mb-3')
+          label(class='block') Size:
+          div(class='flex w-1/2')
+            div(class='size w-1/4')
+              input#S.form-check-input.appearance-none.h-6.w-6.border.border-gray-300.rounded-sm.bg-white.transition.duration-200.mt-1.align-top.bg-no-repeat.bg-center.bg-contain.mr-2.cursor-pointer(class='checked:bg-blue-600 checked:border-blue-600 focus:outline-none' type='checkbox' value='S' name='size')
+              label.form-check-label.inline-block.text-gray-800.text-xl(for='S') S
+            div(class='size w-1/4')
+              input#M.form-check-input.appearance-none.h-6.w-6.border.border-gray-300.rounded-sm.bg-white.transition.duration-200.mt-1.align-top.bg-no-repeat.bg-center.bg-contain.mr-2.cursor-pointer(class='checked:bg-blue-600 checked:border-blue-600 focus:outline-none' type='checkbox' value='M' name='size')
+              label.form-check-label.inline-block.text-gray-800.text-xl(for='M') M 
+            div(class='size w-1/4')
+              input#L.form-check-input.appearance-none.h-6.w-6.border.border-gray-300.rounded-sm.bg-white.transition.duration-200.mt-1.align-top.bg-no-repeat.bg-center.bg-contain.mr-2.cursor-pointer(class='checked:bg-blue-600 checked:border-blue-600 focus:outline-none' type='checkbox' value='L' name='size')
+              label.form-check-label.inline-block.text-gray-800.text-xl(for='L') L 
+            div(class='size w-1/4')
+              input#XL.form-check-input.appearance-none.h-6.w-6.border.border-gray-300.rounded-sm.bg-white.transition.duration-200.mt-1.align-top.bg-no-repeat.bg-center.bg-contain.mr-2.cursor-pointer(class='checked:bg-blue-600 checked:border-blue-600 focus:outline-none' type='checkbox' value='SL' name='size')
+              label.form-check-label.inline-block.text-gray-800.text-xl(for='XL') XL
+           
+           
+
+          
+        div(class='inputField')
+          label(class='mr-3') Price:
+          input(type="text" name='price' class='w-full p-3 mt-3 mb-5 shadow-lg')
+        div(class='inputField')
+          label(class='mr-3') Sale Price:
+          input(type="text" name='salePrice' class='w-full p-3 mt-3 mb-5 shadow-lg')
+        div(class='inputField')
+          label(class='block') Description:
+          textarea(cols="30", rows="10" name='description' class='w-full p-3 mt-3 mb-5 shadow-lg') 
+        
+
+    button(type="submit" id='submitProduct' class='bg-blogblue text-white p-2 mt-5 rounded-lg float-right') Add New
+  script(src="/js/onChangeProductThumbnail.js")
+  script(src="/js/checkValidPrice.js")
