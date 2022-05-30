@@ -1,0 +1,18 @@
+extends ../layout.pug
+block content 
+  section(class="item w-full mx-0 mt-20 px-32 py-8 pb-20 flex flex-wrap items-end justify-between bg-gray-200")
+   form(action="/account/login" method="POST" class='w-full')
+    div(class='flex flex-wrap justify-center')
+      h1(class='w-full mb-3 text-center text-4xl font-bold uppercase') Login
+      div(class='info-side w-full h-auto')
+        div(class='inputField')
+          label(class='block') Username:
+          input(type="text" name='username' class='w-full p-3 mt-3 mb-5 shadow-lg')
+        div(class='inputField')
+          label(class='block') Password:
+          input(type="password" name='password' class='w-full p-3 mt-3 mb-5 shadow-lg')
+      div(class='flex justify-between w-full')
+        div(class='w-1/2')
+          a(href="/user/register" class='text-blogblue') Create a Account 
+        div(class='w-1/2')
+          button(type="submit" id='submitProduct' class='bg-blogblue text-white p-2 rounded-lg float-right') Login

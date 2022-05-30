@@ -14,12 +14,9 @@ block content
           a(href="/products/$id" class='truncate')=product.name
         if product.salePrice
           div(class='price flex justify-center items-center px-12 mt-1 w-full')
-            div(class='p-price text-center line-through text-sm w-[49%]')=product.price
-              |đ
-            div(class='p-salePrice text-center w-[49%] text-blogblue')=product.salePrice
-              |đ
+            div(class='p-price text-center line-through text-sm w-[49%]')=priceFormat(product.price)
+            div(class='p-salePrice text-center w-[49%] text-blogblue')=priceFormat(product.salePrice)
         else
-          div(class='p-price text-center text-blogblue')=product.price
-            |đ
+          div(class='p-price text-center text-blogblue')=priceFormat(product.price)
 
       

@@ -8,14 +8,17 @@ const logger = require('morgan');
 const dotenv = require('dotenv');
 dotenv.config();
 
+// database
+const database = require("./database/config");
+database.connect();
+
 
 // routers
 const indexRouter = require('./routes/index');
 const productsRouter = require('./routes/products');
+const usersRouter = require('./routes/users');
+const isLogged = require('./middleware/isLogged');
 
-// database
-const database = require("./database/config");
-database.connect();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,12 +27,13 @@ app.set('view engine', 'pug');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser(process.env.TOKEN_SECRET));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // routes
 app.use('/', indexRouter);
 app.use('/products', productsRouter);
+app.use('/account', usersRouter);
 
 
 

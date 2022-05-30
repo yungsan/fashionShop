@@ -1,0 +1,44 @@
+extends ../layout.pug
+block content 
+  section(class="item w-full mx-0 mt-20 px-32 py-8 pb-20 flex flex-wrap items-end justify-between bg-gray-200 font-bold")
+    div(class='flex w-full justify-between')
+      div(class='productImages w-[34%] h-fit')
+        div(class='productThumbnail')
+          img(src=data.thumbnail, class="m-w-full" id='productThumbnail')
+        div(class='productGallery flex flex-wrap w-full justify-between mt-3 bg-white')
+          each image in data.gallery
+            img(src= image, class="w-[24%] galleryImage")
+
+      div(class='w-[64%] bg-white px-5 py-8 h-fit')  
+        div(class='wrap mb-3')
+          p(class='opacity-80 inline uppercase text-sm font-medium') Author:
+          h1(class='p-name inline mx-1 text-sm uppercase text-blogblue')=data.author
+        div(class='wrap mb-3')
+          p(class='opacity-80 font-medium') Product name:
+          h1(class='p-name text-3xl uppercase text-justify')=data.name
+        div(class='wrap mb-3')
+          p(class='opacity-80 font-medium') Price:
+          p(class='p-price text-blogblue text-3xl')=priceFormat(data.price)
+        div(class='wrap mb-3')
+          p(class='opacity-80 font-medium') Sizes:
+          div(class='flex w-1/2')
+            each size in data.size
+              div(class='size w-1/4')
+                input#S.form-check-input.appearance-none.h-6.w-6.border.border-gray-300.rounded-sm.bg-white.transition.duration-200.mt-1.align-top.bg-no-repeat.bg-center.bg-contain.mr-2.cursor-pointer(class='checked:bg-blue-600 checked:border-blue-600 focus:outline-none' type='checkbox' value=size name='size')
+                label.form-check-label.inline-block.text-gray-800.text-xl(for='S')=size
+        div(class='wrap')
+          p(class='opacity-80 font-medium') Amount:
+          div(class='flex')
+            button(id='decreaseAmount')
+              svg.h-6.w-6(xmlns='http://www.w3.org/2000/svg' fill='none' viewbox='0 0 24 24' stroke='currentColor' stroke-width='2' class='scale-[.8]')
+                path(stroke-linecap='round' stroke-linejoin='round' d='M20 12H4')
+            div(class='amount w-10 h-10 border-2 flex justify-center items-center mx-3') 
+              div#numberCount 1
+            button(id='increaseAmount')
+              svg.h-6.w-6(xmlns='http://www.w3.org/2000/svg' fill='none' viewbox='0 0 24 24' stroke='currentColor' stroke-width='2' class='scale-[.8]')
+                path(stroke-linecap='round' stroke-linejoin='round' d='M12 4v16m8-8H4')
+        div(class='wrap')
+          button(class='w-full mt-3 font-bold bg-blogblue p-3 rounded-lg text-white') ADD TO CART
+    div(class='p-description bg-white mt-5 p-10 whitespace-pre-line w-full')=data.description
+    div(class='p-comment')=data.comment
+  script(src="/js/detailProduct.js") 

@@ -1,0 +1,13 @@
+extends ../layout.pug
+block content 
+  section(class="item w-full mx-0 mt-20 px-32 py-8 pb-20 flex flex-wrap items-end justify-between bg-gray-200 font-bold")
+    div(class='flex w-full h-[500px] bg-white p-10')
+      div(class='w-1/4')
+        img(src=user.avatar class='m-w-full rounded-[50%] w-48 h-48 shadow-lg')
+      div(class='w-3/4')
+        div(class='flex w-full mb-3')
+          span(class='w-[15%] opacity-80 font-bold text-highlight') Username:
+          h1(class='w-[85%] inline-block mx-3')=user.username
+        div(class='flex w-full mb-3')
+          span(class='w-[15%] opacity-80 font-bold text-highlight') Email:
+          h1(class='w-[85%] inline-block mx-3')=user.email

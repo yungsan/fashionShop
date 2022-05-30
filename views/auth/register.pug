@@ -1,0 +1,23 @@
+extends ../layout.pug
+block content 
+  section(class="item w-full mx-0 mt-20 px-32 py-8 pb-20 flex flex-wrap items-end justify-between bg-gray-200")
+   form(action="/account/register" enctype="multipart/form-data" method="POST" class='w-full')
+    div(class='flex justify-between')
+      div(class='images-side w-[34%] h-fit')
+        label(class='block mb-3') Avatar:
+        img(src="/images/products/default_Thumbnail.jpg", alt="thumbnail" id='productThumbnail')
+        input(type="file" name='avatar' id='productThumbnailFile')
+      div(class='info-side w-[64%] h-auto')
+        div(class='inputField')
+          label(class='block') Username:
+          input(type="text" name='username' class='w-full p-3 mt-3 mb-5 shadow-lg')
+        div(class='inputField')
+          label(class='block') Email:
+          input(type="email" name='email' class='w-full p-3 mt-3 mb-5 shadow-lg')
+        div(class='inputField')
+          label(class='block') Password:
+          input(type="password" name='password' class='w-full p-3 mt-3 mb-5 shadow-lg')
+      
+    button(type="submit" id='submitProduct' class='bg-blogblue text-white p-2 rounded-lg float-right') Create Account
+  script(src="/js/onChangeThumbnail.js")
+  script(src="/js/checkValidEmail.js")
