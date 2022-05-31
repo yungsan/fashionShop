@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const url = 'mongodb://localhost/shop';
+
 async function connect(){
     try {
         await mongoose.connect(process.env.LOCAL_DB);
