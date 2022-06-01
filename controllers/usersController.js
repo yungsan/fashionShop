@@ -49,7 +49,7 @@ class usersController{
         })
 
       await usersModel.create(req.body);
-      res.redirect('/user');
+      res.redirect('/account');
 
     } catch (error) {
       res.json(error);
