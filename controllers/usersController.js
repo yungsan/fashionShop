@@ -1,4 +1,5 @@
 const usersModel = require('../model/usersModel');
+const productsModel = require('../model/productsModel');
 const cloudinary = require('../uploads/cloudinary');
 const jwt = require('jsonwebtoken');
 
@@ -6,7 +7,8 @@ class usersController{
   async index(req, res){
     const token = await req.loginToken;
     const user = await usersModel.findOne({ _id: token._id});
-    res.render('users/profile', { user });
+    const products = await productsModel.find({ author: user.username });
+    res.render('users/profile', { user, products });
   }
 
   loginRender(req, res){
