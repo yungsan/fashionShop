@@ -7,6 +7,7 @@ app.use(bodyParser.json());
 const logger = require('morgan');
 const dotenv = require('dotenv');
 dotenv.config();
+var methodOverride = require('method-override')
 
 // database
 const database = require("./database/config");
@@ -17,7 +18,6 @@ database.connect();
 const indexRouter = require('./routes/index');
 const productsRouter = require('./routes/products');
 const usersRouter = require('./routes/users');
-const isLogged = require('./middleware/isLogged');
 
 
 // view engine setup
@@ -29,6 +29,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.TOKEN_SECRET));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'));
 
 // routes
 app.use('/', indexRouter);
