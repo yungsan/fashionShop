@@ -15,12 +15,18 @@ class ProductsControllers{
     return res.render('products/detailProduct', { data, priceFormat});
   }
 
+  async editProductRender(req, res){
+    const data = await productsModel.findOne({ _id: req.params.id });
+    return res.render('products/editProduct', { data, priceFormat });
+  }
+
   async addNewProductRender(req, res){
     const author = await usersModel.findOne({ _id: req.loginToken._id });
     res.render('products/addNewProduct', { author: author.username });
   }
 
   async addNewProduct(req, res){
+
     try {
       const location = `products/${req.body.name}`
       const thumbnail = req.files['thumbnail'][0].path.replace(/\\/g, "/");
@@ -64,6 +70,16 @@ class ProductsControllers{
 
     } catch (err) {
       res.json(err);
+    }
+  }
+
+  async delete(req, res, next){
+    try {
+      await productsModel.deleteOne({ _id: req.body.id });
+      return res.redirect('back');
+      
+    } catch (error) {
+      return res.json(error);
     }
   }
 

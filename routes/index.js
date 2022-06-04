@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const getData = require('../middleware/crawler/getData');
 
-/* GET home page. */
+router.post('/crawler', getData);
+
 router.get('/', function(req, res, next) {
   res.render('home', { title: 'Fashion Shop' });
 });

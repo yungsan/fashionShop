@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("../uploads/multer");
-const isLogged = require('../middleware/isLogged');
-const productsControllers = require("../controllers/productsControllers");
+const isLogged = require("../middleware/isLogged");
+const productsController = require("../controllers/productsController");
 
 router
   .route("/addNewProduct")
-  .get(isLogged, productsControllers.addNewProductRender)
+  .get(isLogged, productsController.addNewProductRender)
   .post(
     multer.fields([
       {
@@ -18,11 +18,15 @@ router
         maxCount: 15,
       },
     ]),
-    productsControllers.addNewProduct
+    productsController.addNewProduct
   );
 
-router.get("/detail/:id", productsControllers.detail);
+router.route("/edit/:id").get(productsController.editProductRender);
+router.get("/detail/:id", productsController.detail);
 
-router.get("/", productsControllers.index);
+router
+  .route("/")
+  .get(productsController.index)
+  .delete(productsController.delete);
 
 module.exports = router;

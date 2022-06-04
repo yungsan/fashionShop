@@ -1,6 +1,11 @@
 extends ../layout.pug
 block content 
   section(class="item w-full mx-0 mt-20 px-32 py-8 pb-20 flex flex-wrap items-end justify-between bg-gray-200")
+   form(action="/crawler" method="POST" class='w-full')
+      div(class='w-full h-auto')
+        div(class='inputField')
+          label(class='inline-block') Crawler:
+          input(type="text" name='cheerio' placeholder='Copy URl of product you want in https://www.coolmate.me' class='w-full p-3 mt-3 mb-5 cursor-default text-blogblue font-bold')
    form(action="/products/addNewProduct" enctype="multipart/form-data" method="POST" class='w-full')
     div(class='flex justify-between')
       div(class='images-side w-[34%] h-fit')

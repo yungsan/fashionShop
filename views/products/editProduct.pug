@@ -1,0 +1,44 @@
+extends ../layout.pug
+block content 
+  section(class="item w-full mx-0 mt-20 px-32 py-8 pb-20 flex flex-wrap items-end justify-between bg-gray-200")
+   form(action=`/products/edit/${data._id}?_method=PUT` enctype="multipart/form-data" method="POST" class='w-full')
+    div(class='flex justify-between')
+      div(class='images-side w-[34%] h-fit')
+        label(class='block mb-3') Thumbnail:
+        img(src=data.thumbnail, alt="thumbnail" id='productThumbnail')
+        input(type="file" name='thumbnail' id='productThumbnailFile')
+        label(class='block my-3') Gallery:
+        input(type="file" name='gallery' id='productGalleryFiles' multiple)
+        div(id="productGallery" class='flex justify-between items-start flex-wrap w-full h-fit mt-3')
+          each img in data.gallery
+            div(class='galleryPic w-[32%] mb-2 h-fit bg-highlight')
+              img(src=img, class="w-full h-[100px] object-cover")
+      div(class='info-side w-[64%] h-auto')
+        div(class='inputField')
+          label(class='inline-block') Author:
+          input(type="text" name='author' value=data.author readonly class='p-3 mt-3 mb-5 outline-none cursor-default bg-transparent text-blogblue font-bold')
+        div(class='inputField')
+          label(class='block') Product Name:
+          input(type="text" name='name' value=data.name class='w-full p-3 mt-3 mb-5 shadow-lg')
+        div(class='inputField mb-3')
+          label(class='block') Size:
+          ediv(class='flex w-1/2')
+            each size in data.size
+              div(class='size w-1/4')
+                input#S.form-check-input.appearance-none.h-6.w-6.border.border-gray-300.rounded-sm.bg-white.transition.duration-200.mt-1.align-top.bg-no-repeat.bg-center.bg-contain.mr-2.cursor-pointer(class='checked:bg-blue-600 checked:border-blue-600 focus:outline-none' type='checkbox' value=size name='size')
+                label.form-check-label.inline-block.text-gray-800.text-xl(for='S')=size
+        div(class='inputField')
+          label(class='mr-3') Price:
+          input(type="text" name='price' value=data.price class='w-full p-3 mt-3 mb-5 shadow-lg')
+        div(class='inputField')
+          label(class='mr-3') Sale Price:
+          input(type="text" name='salePrice' value=data.salePrice class='w-full p-3 mt-3 mb-5 shadow-lg')
+        div(class='inputField')
+          label(class='block') Description:
+          textarea(cols="30", rows="10" name='description' class='w-full p-3 mt-3 mb-5 shadow-lg')=data.description
+        
+
+    button(type="submit" id='submitProduct' class='bg-blogblue text-white p-2 mt-5 rounded-lg float-right') Add New
+  script(src="/js/onChangeThumbnail.js")
+  script(src="/js/onChangeGallery.js")
+  script(src="/js/checkValidPrice.js")

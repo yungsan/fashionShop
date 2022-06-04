@@ -16,6 +16,10 @@ router
 
 router.route("/:id").put(multer.single("avatar"), usersController.updateUser);
 
-router.route("/").get(isLogged, usersController.index);
+router
+  .route("/")
+  .get(isLogged, usersController.index)
+  .post(usersController.logout)
+  .delete(usersController.deleteUser, usersController.logout);
 
 module.exports = router;

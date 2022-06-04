@@ -2,6 +2,7 @@ const usersModel = require("../model/usersModel");
 const productsModel = require("../model/productsModel");
 const cloudinary = require("../uploads/cloudinary");
 const jwt = require("jsonwebtoken");
+const defaultImage = 'https://res.cloudinary.com/dfib3gi7p/image/upload/v1654083880/resources/default_Thumbnail_s5whby.jpg';
 
 class usersController {
   async index(req, res) {
@@ -29,6 +30,12 @@ class usersController {
     }
   }
 
+  logout(req, res){
+    res.clearCookie("loginToken");
+    res.redirect('/account');
+    res.end();
+  }
+
   register(req, res) {
     res.render("auth/register");
   }
@@ -36,21 +43,27 @@ class usersController {
   async addNewUser(req, res) {
     try {
       const location = `avatar/${req.body.username}`;
-      const avatar = req.file.path.replace(/\\/g, "/");
-      await cloudinary.uploader.upload(
-        avatar,
-        {
-          folder: location,
-          use_filename: true,
-        },
-        (err, rs) => {
-          console.log("result", rs, "err", err);
-          req.body.avatar = rs.url;
-        }
-      );
+      if (req.file) {
+        const avatar = req.file.path.replace(/\\/g, "/");
+        await cloudinary.uploader.upload(
+          avatar,
+          {
+            folder: location,
+            use_filename: true,
+          },
+          (err, rs) => {
+            console.log("result", rs, "err", err);
+            req.body.avatar = rs.url;
+          }
+        );
+      } else{
+        req.body.avatar = defaultImage;
+      }
+      
 
       await usersModel.create(req.body);
       res.redirect("/account");
+
     } catch (error) {
       res.json(error);
     }
@@ -79,6 +92,12 @@ class usersController {
       res.json(error);
     }
   }
+
+  async deleteUser(req, res, next){
+    await usersModel.deleteOne({ _id: req.body.id });
+    next();
+  }
+
 }
 
 module.exports = new usersController();
