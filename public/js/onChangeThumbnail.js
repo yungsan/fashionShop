@@ -1,6 +1,7 @@
 const thumbnail = document.querySelector('#productThumbnail');
 const thumbnailFile = document.querySelector('#productThumbnailFile');
 
+
 thumbnailFile.addEventListener('change', () => {
   
   const [file] = thumbnailFile.files;

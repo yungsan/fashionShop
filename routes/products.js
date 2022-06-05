@@ -21,7 +21,11 @@ router
     productsController.addNewProduct
   );
 
-router.route("/edit/:id").get(productsController.editProductRender);
+router
+  .route("/edit/:id")
+  .get(productsController.editProductRender)
+  .put(productsController.edit);
+
 router.get("/detail/:id", productsController.detail);
 
 router

@@ -6,7 +6,7 @@ block content
         div(class='inputField')
           label(class='inline-block') Crawler:
           input(type="text" name='cheerio' placeholder='Copy URl of product you want in https://www.coolmate.me' class='w-full p-3 mt-3 mb-5 cursor-default text-blogblue font-bold')
-   form(action="/products/addNewProduct" enctype="multipart/form-data" method="POST" class='w-full')
+   form(action="/products/addNewProduct" enctype="multipart/form-data" method="POST" class='w-full' id='editForm' isEdit='false')
     div(class='flex justify-between')
       div(class='images-side w-[34%] h-fit')
         label(class='block mb-3') Thumbnail:

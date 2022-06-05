@@ -20,6 +20,15 @@ class ProductsControllers{
     return res.render('products/editProduct', { data, priceFormat });
   }
 
+  async edit(req, res){
+    try {
+      await productsModel.updateOne({ _id: req.params.id }, req.body );
+      res.redirect(`/products/detail/${req.params.id}`);
+    } catch (error) {
+      res.json(error);
+    }
+  }
+
   async addNewProductRender(req, res){
     const author = await usersModel.findOne({ _id: req.loginToken._id });
     res.render('products/addNewProduct', { author: author.username });

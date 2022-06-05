@@ -1,18 +1,21 @@
 extends ../layout.pug
 block content 
   section(class="item w-full mx-0 mt-20 px-32 py-8 pb-20 flex flex-wrap items-end justify-between bg-gray-200")
-   form(action=`/products/edit/${data._id}?_method=PUT` enctype="multipart/form-data" method="POST" class='w-full')
+   form(action=`/products/edit/${data._id}?_method=PUT` method="POST" class='w-full' id='editForm' isEdit='true')
     div(class='flex justify-between')
       div(class='images-side w-[34%] h-fit')
         label(class='block mb-3') Thumbnail:
         img(src=data.thumbnail, alt="thumbnail" id='productThumbnail')
-        input(type="file" name='thumbnail' id='productThumbnailFile')
+        //- input(type="file" name='thumbnail' id='productThumbnailFile')
         label(class='block my-3') Gallery:
-        input(type="file" name='gallery' id='productGalleryFiles' multiple)
+        //- input(type="file" name='gallery' id='productGalleryFiles' multiple)
         div(id="productGallery" class='flex justify-between items-start flex-wrap w-full h-fit mt-3')
           each img in data.gallery
-            div(class='galleryPic w-[32%] mb-2 h-fit bg-highlight')
-              img(src=img, class="w-full h-[100px] object-cover")
+            div(class='galleryPic w-[32%] mb-2 h-fit bg-highlight relative')
+              button(class='absolute right-0 top-2 removeBtn' type='button')
+                svg.h-7.w-7.text-red-500(xmlns='http://www.w3.org/2000/svg' fill='white' viewbox='0 0 24 24' stroke='currentColor' stroke-width='2')
+                  path(fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z' clip-rule='evenodd')
+              img(src=img, class="w-full h-[100px] object-cover galleryImage")
       div(class='info-side w-[64%] h-auto')
         div(class='inputField')
           label(class='inline-block') Author:
@@ -38,7 +41,8 @@ block content
           textarea(cols="30", rows="10" name='description' class='w-full p-3 mt-3 mb-5 shadow-lg')=data.description
         
 
-    button(type="submit" id='submitProduct' class='bg-blogblue text-white p-2 mt-5 rounded-lg float-right') Add New
+    button(type="submit" id='submitProduct' class='bg-blogblue text-white p-2 mt-5 rounded-lg float-right') Update
+
   script(src="/js/onChangeThumbnail.js")
   script(src="/js/onChangeGallery.js")
   script(src="/js/checkValidPrice.js")
