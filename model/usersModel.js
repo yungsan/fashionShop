@@ -5,6 +5,7 @@ const usersSchema = mongoose.Schema({
   email: { type: String, required: true, trim: true, unique: true },
   password: { type: String, required: true },
   avatar: { type: String, default: '/images/products/default_Thumbnail.jpg' },
+  role: { type: String, default: 'user' },
   joined: {
     type: Date,
     default: Date.now

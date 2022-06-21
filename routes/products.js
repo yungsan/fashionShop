@@ -26,7 +26,10 @@ router
   .get(productsController.editProductRender)
   .put(productsController.edit);
 
-router.get("/detail/:id", productsController.detail);
+router
+  .route("/detail/:id")
+  .get(productsController.detail)
+  .post(isLogged, productsController.addComments);
 
 router
   .route("/")

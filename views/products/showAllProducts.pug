@@ -4,14 +4,14 @@ block content
     svg.h-6.w-6(xmlns='http://www.w3.org/2000/svg' fill='none' viewbox='0 0 24 24' stroke='currentColor' stroke-width='2' class="w-12 h-12 p-3 bg-blogblue text-white rounded-[50%] fixed top-[85%] left-[94%]")
       path(stroke-linecap='round' stroke-linejoin='round' d='M12 4v16m8-8H4')
 
-  section(class="item w-full mx-0 mt-20 px-32 py-8 pb-20 flex flex-wrap items-end justify-between bg-gray-200 font-bold" id="trending")
+  section(class="item w-full mx-0 mt-20 px-32 py-8 pb-20 flex flex-wrap items-end justify-between bg-gray-200 font-bold" id="productsList")
     each product in data
       div(class='p-item w-[32%] h-auto bg-white mb-10 p-8 shadow-md')
         div(class='p-thumbnail w-full')
           a(href=`/products/detail/${product._id}`)
             img(src=`${product.thumbnail}`, class="m-w-full w-full bg-red-200 h-[400px] object-cover")
         div(class='p-title text-center mt-5 overflow-hidden')
-          a(href="/products/$id" class='truncate')=product.name
+          a(href=`/products/detail/${product._id}` class='truncate')=product.name
         if product.salePrice
           div(class='price flex justify-center items-center px-12 mt-1 w-full')
             div(class='p-price text-center line-through text-sm w-[49%]')=priceFormat(product.price)

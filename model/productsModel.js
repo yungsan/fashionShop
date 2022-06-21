@@ -8,7 +8,6 @@ const poductSchema = mongoose.Schema({
   price: { type: Number, required: true },
   salePrice: Number,
   size: [],
-  comments: [],
   author: { type: String, default: 'Anonymous' },
   date: {
     type: Date,

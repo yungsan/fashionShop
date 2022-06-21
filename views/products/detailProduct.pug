@@ -1,6 +1,6 @@
 extends ../layout.pug
 block content 
-  section(class="item w-full mx-0 mt-20 px-32 py-8 pb-20 flex flex-wrap items-end justify-between bg-gray-200 font-bold")
+  section(class="item w-full mx-0 mt-20 px-32 py-8 pb-20 flex flex-wrap items-end justify-between bg-gray-200 font-bold" id='detailProduct')
     div(class='flex w-full justify-between')
       div(class='productImages w-[34%] h-fit')
         div(class='productThumbnail')
@@ -9,10 +9,12 @@ block content
           each image in data.gallery
             img(src= image, class="w-[24%] galleryImage")
 
-      div(class='w-[64%] bg-white px-5 py-8 h-fit')  
+      div(class='detail w-[64%] bg-white px-5 py-8 h-fit')  
+        div(class='wrap mb-3')
+          input(type="text" name='id' value=data._id class='w-full hidden' id='pid')
         div(class='wrap mb-3')
           p(class='opacity-80 inline uppercase text-sm font-medium') Author:
-          h1(class='p-name inline mx-1 text-sm uppercase text-blogblue')=data.author
+          h1(class='p-author inline mx-1 text-sm uppercase text-blogblue')=data.author
         div(class='wrap mb-3')
           p(class='opacity-80 font-medium') Product name:
           h1(class='p-name text-3xl uppercase text-justify')=data.name
@@ -40,5 +42,28 @@ block content
         div(class='wrap')
           button(class='w-full mt-3 font-bold bg-blogblue p-3 rounded-lg text-white') ADD TO CART
     div(class='p-description bg-white mt-5 p-10 whitespace-pre-line w-full')=data.description
-    div(class='p-comment')=data.comment
+    div(class='bg-white mt-5 p-10 w-full')
+      if currentUser
+        div(class='flex w-full items-center justify-between flex-wrap border-b-2 mb-3 py-3 h-fit')
+          div(class='w-[10%]')
+            img(src=currentUser.avatar, class="w-[100px] h-[100px] object-cover rounded-full" id='userAvatar')
+          div(class='w-[85%]')
+            label.block.mb-3#currentUser=currentUser.username 
+            input(type="text" placeholder='Add your comments' class='caret-neutral-900 outline-none w-full' id='userInput')
+            input(type="text" class='hidden' value=currentUser._id  id='userID')
+          div(class='w-full')
+            button(id='commentBtn' class='bg-blogblue py-2 px-3 rounded-lg float-right text-white') Send
+    div(class='p-comment bg-white mt-0 p-10 w-full')
+      if comments
+        each cmt in comments 
+          div(class='flex w-full items-center justify-between flex-wrap mb-10 border-b-2 py-2')
+            div(class='w-[10%]')
+              img(src=cmt.avatar || 'https://res.cloudinary.com/dfib3gi7p/image/upload/v1654083880/resources/default_Thumbnail_s5whby.jpg', class="w-[100px] h-[100px] object-cover rounded-full")
+            div(class='w-[85%] flex flex-wrap justify-between')
+              label(class='block w-fit')=cmt.username
+              div(class='flex w-fit')
+                label(class='block mb-3 mr-1 w-fit font-normal text-sm opacity-50')=cmt.createdAt.toLocaleTimeString()
+                label(class='block  w-fit font-normal text-sm opacity-50')=cmt.createdAt.toLocaleDateString("vi-VN")
+              p(class='font-normal w-full')=cmt.content
   script(src="/js/detailProduct.js") 
+  script(src="/js/comment.js") 

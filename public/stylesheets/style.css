@@ -700,6 +700,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 0.75rem;
 }
 
+.mr-1 {
+  margin-right: 0.25rem;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -782,12 +786,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 2.5rem;
 }
 
-.h-7 {
-  height: 1.75rem;
-}
-
 .h-\[100px\] {
   height: 100px;
+}
+
+.h-7 {
+  height: 1.75rem;
 }
 
 .h-12 {
@@ -934,6 +938,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-10 {
   width: 2.5rem;
+}
+
+.w-\[10\%\] {
+  width: 10%;
+}
+
+.w-\[100px\] {
+  width: 100px;
+}
+
+.w-\[85\%\] {
+  width: 85%;
 }
 
 .w-\[32\%\] {
@@ -1367,6 +1383,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 1rem;
 }
 
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
 .px-20 {
   padding-left: 5rem;
   padding-right: 5rem;
@@ -1571,6 +1592,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .line-through {
   -webkit-text-decoration-line: line-through;
           text-decoration-line: line-through;
+}
+
+.caret-neutral-900 {
+  caret-color: #171717;
 }
 
 .opacity-60 {
