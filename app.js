@@ -9,21 +9,6 @@ const dotenv = require('dotenv');
 dotenv.config();
 const methodOverride = require('method-override');
 
-// auto reload browser
-const env = process.env.NODE_ENV || 'development';
-if (env == 'development') {
-  const livereload = require("livereload");
-  const connectLiveReload = require("connect-livereload");
-  const liveReloadServer = livereload.createServer();
-  liveReloadServer.server.once("connection", () => {
-    setTimeout(() => {
-      liveReloadServer.refresh("/");
-    }, 100);
-  });
-  
-  app.use(connectLiveReload());
-}
-
 // database
 const database = require("./database/config");
 database.connect();
@@ -65,6 +50,6 @@ app.use(function(err, req, res, next) {
 });
 
 
-app.listen(process.env.PORT || 3000, function(){
+app.listen(process.env.PORT || 6996, function(){
   console.log("Express server listening on http://localhost:%d in %s mode", this.address().port, app.settings.env);
 });

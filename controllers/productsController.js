@@ -61,6 +61,7 @@ class ProductsControllers {
   }
 
   async addNewProduct(req, res) {
+    // return res.json(req.files)
     try {
       const location = `products/${req.body.name}`;
       const thumbnail = req.files["thumbnail"][0].path.replace(/\\/g, "/");
@@ -105,7 +106,7 @@ class ProductsControllers {
 
       await productsModel.create(req.body);
 
-      return res.redirect("/products");
+      res.redirect("/products");
     } catch (err) {
       res.json(err);
     }
