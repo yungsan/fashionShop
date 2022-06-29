@@ -57,7 +57,10 @@ class ProductsControllers {
 
   async addNewProductRender(req, res) {
     const author = await usersModel.findOne({ _id: req.loginToken._id });
-    res.render("products/addNewProduct", { author: author.username });
+    if (author) {
+      return res.render("products/addNewProduct", { author: author.username });
+    }
+    res.redirect('/account/login');
   }
 
   async addNewProduct(req, res) {
