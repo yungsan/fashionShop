@@ -1,0 +1,25 @@
+block content
+  section#trending(class='w-full p-12 sm:mt-10 sm:mb-5 bg-[#dee1ec] overflow-hidden relative')
+    button#productSliderRight(class='z-10 absolute top-1/2 right-2 shadow-sm sm:hidden') 
+      svg.h-6.w-6(xmlns='http://www.w3.org/2000/svg' viewbox='0 0 20 20' fill='currentColor')
+        path(fill-rule='evenodd' d='M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z' clip-rule='evenodd')
+        path(fill-rule='evenodd' d='M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z' clip-rule='evenodd')
+    button#productSliderLeft(class='z-10 absolute top-1/2 left-5 shadow-sm hidden sm:hidden') 
+      svg.h-6.w-6(xmlns='http://www.w3.org/2000/svg' viewbox='0 0 20 20' fill='currentColor')
+        path(fill-rule='evenodd' d='M15.707 15.707a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 010 1.414zm-6 0a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 1.414L5.414 10l4.293 4.293a1 1 0 010 1.414z' clip-rule='evenodd')
+    div(class='w-full flex items-center') 
+      h1(class='text-3xl uppercase font-bodybold text-highlight') Trending
+      svg.h-10.w-10.ml-1(xmlns='http://www.w3.org/2000/svg'  viewbox='0 0 20 20' fill='#feb062')
+        path(fill-rule='evenodd' d='M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z' clip-rule='evenodd')
+    div(class='products w-[1800px] sm:w-full flex sm:flex-wrap items-start sm:justify-between duration-500')
+      each product in data 
+        div(class='bg-white w-[250px] mr-6 h-fit shadow-lg my-5 p-3 rounded-2xl sm:w-[49%] sm:mr-0 md:w-[32%] lg:w-[24%]') 
+          div(class='thumbnail w-full h-[250px] sm:h-[350px]')
+            a(href=`/products/detail/${product._id}`) 
+              img(src=product.thumbnail, class="w-[60%] sm:w-[80%] h-full object-cover m-auto")
+          div(class='w-full mt-3 sm:w-full')
+            a(href=`/products/detail/${product._id}`) 
+              h1(class='font-bodybold text-sm text-center uppercase text-ellipsis overflow-hidden whitespace-nowrap')=product.name
+          div(class='w-full text-highlight font-extrabold text-center')
+            span=Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(product.salePrice || product.price)
+    script(src="/js/productsSlider.js")

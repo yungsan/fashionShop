@@ -7,7 +7,19 @@ app.use(bodyParser.json());
 const logger = require('morgan');
 const dotenv = require('dotenv');
 dotenv.config();
-var methodOverride = require('method-override')
+const methodOverride = require('method-override');
+
+// auto reload browser
+const livereload = require("livereload");
+const connectLiveReload = require("connect-livereload");
+const liveReloadServer = livereload.createServer();
+liveReloadServer.server.once("connection", () => {
+  setTimeout(() => {
+    liveReloadServer.refresh("/");
+  }, 100);
+});
+
+app.use(connectLiveReload());
 
 // database
 const database = require("./database/config");

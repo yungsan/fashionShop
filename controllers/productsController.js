@@ -3,12 +3,9 @@ const usersModel = require("../model/usersModel");
 const commentsModel = require("../model/commentsModel");
 const cloudinary = require("../uploads/cloudinary");
 const jwt = require("jsonwebtoken");
-const { default: mongoose } = require("mongoose");
 
 const priceFormat = (price) =>
-  new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(
-    price
-  );
+  new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(price);
 
 class ProductsControllers {
   async index(req, res) {
