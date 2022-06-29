@@ -8,9 +8,9 @@ class usersController {
   async index(req, res) {
     const token = await req.loginToken;
     const user = await usersModel.findOne({ _id: token._id });
-    const products = await productsModel.find({ author: user.username });
-    if (!products || !user) {
-      return res.redirect('/account');
+    let products;
+    if (user) {
+      products = await productsModel.find({ author: user.username });
     }
     res.render("users/profile", { user, products });
   }
