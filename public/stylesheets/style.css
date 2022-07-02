@@ -1828,18 +1828,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   .md\:w-\[32\%\] {
     width: 32%;
   }
-
-  .md\:w-\[24\%\] {
-    width: 24%;
-  }
 }
 
 @media (min-width: 1024px) {
   .lg\:w-\[24\%\] {
     width: 24%;
-  }
-
-  .lg\:w-\[32\%\] {
-    width: 32%;
   }
 }

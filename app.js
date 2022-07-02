@@ -18,6 +18,7 @@ database.connect();
 const indexRouter = require('./routes/index');
 const productsRouter = require('./routes/products');
 const usersRouter = require('./routes/users');
+const cartsRouter = require('./routes/carts');
 
 
 // view engine setup
@@ -35,7 +36,7 @@ app.use(methodOverride('_method'));
 app.use('/', indexRouter);
 app.use('/products', productsRouter);
 app.use('/account', usersRouter);
-
+app.use('/carts', cartsRouter);
 
 
 // error handler

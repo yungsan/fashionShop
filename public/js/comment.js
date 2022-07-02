@@ -1,4 +1,4 @@
-const xhr = new XMLHttpRequest();
+let xhr = new XMLHttpRequest();
 const comment = document.querySelector(".p-comment");
 const btn = document.querySelector("#commentBtn");
 const pid = document.querySelector("#pid").value;

@@ -1,6 +1,7 @@
 const productsModel = require("../model/productsModel");
 const usersModel = require("../model/usersModel");
 const commentsModel = require("../model/commentsModel");
+const cartModel = require("../model/cartsModel");
 const cloudinary = require("../uploads/cloudinary");
 const jwt = require("jsonwebtoken");
 
@@ -116,6 +117,7 @@ class ProductsControllers {
   }
 
   async addComments(req, res, next) {
+    console.log(req.body);
     
     try {
 
@@ -126,7 +128,6 @@ class ProductsControllers {
       console.log(error);
       throw error;
     }
-    
     
   }
 

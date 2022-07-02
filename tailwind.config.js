@@ -17,6 +17,8 @@ module.exports = {
       'main': '#3f3b3b',
       'blogblue': '#2f89fc', 
       'highlight': '#feb062',
+      'sushired': '#B1464A',
+      'sushipink': 'rgb(255,240,222)',
       inherit: colors.inherit,
       current: colors.current,
       transparent: colors.transparent,

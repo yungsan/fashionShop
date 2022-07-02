@@ -13,7 +13,7 @@ class usersController {
       products = await productsModel.find({ author: user.username });
       return res.render("users/profile", { user, products });
     }
-    return res.render("users/profile", { user });
+    return res.render("users/profile", { title: 'Profile', user });
   }
 
   loginRender(req, res) {

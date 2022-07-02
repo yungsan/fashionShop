@@ -26,8 +26,8 @@ block content
           div(class='flex w-1/2')
             each size in data.size
               div(class='size w-1/4')
-                input#S.form-check-input.appearance-none.h-6.w-6.border.border-gray-300.rounded-sm.bg-white.transition.duration-200.mt-1.align-top.bg-no-repeat.bg-center.bg-contain.mr-2.cursor-pointer(class='checked:bg-blue-600 checked:border-blue-600 focus:outline-none' type='checkbox' value=size name='size')
-                label.form-check-label.inline-block.text-gray-800.text-xl(for='S')=size
+                input(id=size).form-check-input.appearance-none.h-6.w-6.border.border-gray-300.rounded-sm.bg-white.transition.duration-200.mt-1.align-top.bg-no-repeat.bg-center.bg-contain.mr-2.cursor-pointer(class='checked:bg-blue-600 checked:border-blue-600 focus:outline-none' type='radio' value=size name='size')
+                label.form-check-label.inline-block.text-gray-800.text-xl(for=size)=size
         div(class='wrap')
           p(class='opacity-80 font-medium') Amount:
           div(class='flex')
@@ -40,7 +40,7 @@ block content
               svg.h-6.w-6(xmlns='http://www.w3.org/2000/svg' fill='none' viewbox='0 0 24 24' stroke='currentColor' stroke-width='2' class='scale-[.8]')
                 path(stroke-linecap='round' stroke-linejoin='round' d='M12 4v16m8-8H4')
         div(class='wrap')
-          button(class='w-full mt-3 font-bold bg-blogblue p-3 rounded-lg text-white') ADD TO CART
+          button(id='addToCart' class='w-full mt-3 font-bold bg-blogblue p-3 rounded-lg text-white') ADD TO CART
     div(class='p-description bg-white mt-5 p-10 whitespace-pre-line w-full')=data.description
     div(class='bg-white mt-5 p-10 w-full')
       if currentUser
@@ -67,3 +67,4 @@ block content
               p(class='font-normal w-full')=cmt.content
   script(src="/js/detailProduct.js") 
   script(src="/js/comment.js") 
+  script(type="module" src="/js/cart.js") 
